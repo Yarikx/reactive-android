@@ -30,7 +30,7 @@ object General {
 
 object AndroidBuild extends Build {
   lazy val main = Project (
-    "Reactive Android",
+    "ReactiveAndroid",
     file("."),
     settings = General.fullAndroidSettings
   )
