@@ -1,0 +1,5 @@
+bin/
+gen/
+proguard_cache/
+.cache
+*.class
