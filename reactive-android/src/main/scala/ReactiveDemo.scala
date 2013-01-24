@@ -50,38 +50,21 @@ class ReactiveDemo extends Activity with TypedActivity with Observing {
     val move = my.touches.filter(_.getAction()==MotionEvent.ACTION_MOVE)
     val up = my.touches.filter(_.getAction()==MotionEvent.ACTION_UP)
     
-    
-    (down | up).foreach(evt => Log.d("mouse", "evt %s, x=%f, y=%f".format(evt.getAction(), evt.getX(), evt.getY())))
-    
     val res = down.flatMap{md =>
       Log.d("reactive", "in mouse down")
       val p = new Path
       p.moveTo(md.getX, md.getY)
-      var first = true
       val v = move.foldLeft(p)((path, evt) => {val p = new Path(path); p.lineTo(evt.getX, evt.getY); p}).hold(p)
       
       
-      val ups = up.takeWhile(_ => first).map{evt =>
-        first = false
+      val ups = up.map{evt =>
         val now = v.now
         now.close()
         now
       }
-      ups
+      ups.once
     }
     
-//     val res = down.flatMap{md =>
-//      val p = new StringBuffer("started\n")
-//      val v = Var(p)
-//      move.foldLeft(p)((path, evt) => {p.append("line %f, %f\n".format(evt.getX, evt.getY)); path}).foreach(path  => v.update(path))
-//      
-//      var first = true
-//      val ups = up.takeWhile(_ => first).map{evt =>
-//        first = false
-//        v.now.toString()
-//      }
-//      ups
-//    }
     res.foreach(p =>{
       my.paths += p
       Log.d("foreach","path added")
@@ -91,12 +74,10 @@ class ReactiveDemo extends Activity with TypedActivity with Observing {
     
 //    for{
 //      md <- down;
-//      signal = Var({
-//        val p = new Path
-//        p.moveTo(md.getX(), md.getY())
-//        p
-//      })
-//      move 
+//      val p = new Path;
+//      p.moveTo(md.getX, md.getY);
+//      
+//      
 //    } yield signal
 
   }
