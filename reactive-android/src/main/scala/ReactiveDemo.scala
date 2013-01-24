@@ -23,6 +23,7 @@ import reactive.Var
 import scala.collection.mutable.ListBuffer
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.graphics.Color
 
 class ReactiveDemo extends Activity with TypedActivity with Observing {
   override def onCreate(bundle: Bundle) {
@@ -78,7 +79,8 @@ class MyCanvas(context: Context) extends View(context) {
   }
   
   val defPaint = new Paint();
-  defPaint.setColor(0xffffffff)
+  defPaint.setColor(Color.WHITE)
+  defPaint.setStyle(Paint.Style.STROKE);
   override def onDraw(c: Canvas){
     super.onDraw(c)
     
