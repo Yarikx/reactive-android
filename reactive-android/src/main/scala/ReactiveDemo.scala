@@ -50,35 +50,21 @@ class ReactiveDemo extends Activity with TypedActivity with Observing {
     val move = my.touches.filter(_.getAction()==MotionEvent.ACTION_MOVE)
     val up = my.touches.filter(_.getAction()==MotionEvent.ACTION_UP)
     
-    val res = down.flatMap{md =>
-      Log.d("reactive", "in mouse down")
-      val p = new Path
-      p.moveTo(md.getX, md.getY)
-      val v = move.foldLeft(p)((path, evt) => {val p = new Path(path); p.lineTo(evt.getX, evt.getY); p}).hold(p)
-      
-      
-      val ups = up.map{evt =>
-        val now = v.now
-        now.close()
-        now
+    for{
+      md <- down;
+      val p = {
+        val path = new Path
+        path.moveTo(md.getX, md.getY)
+        path
       }
-      ups.once
-    }
-    
-    res.foreach(p =>{
-      my.paths += p
+      v = move.foldLeft(p)((path, evt) => {val p = new Path(path); p.lineTo(evt.getX, evt.getY); p}).hold(p);
+      um <- up.once;
+      path = v.now
+    }  {
+      my.paths += path
       Log.d("foreach","path added")
       my.invalidate()
-    }); 
-    
-    
-//    for{
-//      md <- down;
-//      val p = new Path;
-//      p.moveTo(md.getX, md.getY);
-//      
-//      
-//    } yield signal
+    }
 
   }
 }
