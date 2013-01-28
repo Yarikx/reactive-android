@@ -44,12 +44,12 @@ class ReactiveDemo extends Activity with TypedActivity with Observing {
 
     val mainStream = new EventSource[MotionEvent]()
 
-    val my = new MyCanvas(this)
-    pane.addView(my, new LinearLayout.LayoutParams(-1, -1 ,1))
+    val canvas = new MyCanvas(this)
+    pane.addView(canvas, new LinearLayout.LayoutParams(-1, -1 ,1))
     
-    val down = my.touches.filter(_.getAction()==MotionEvent.ACTION_DOWN)
-    val move = my.touches.filter(_.getAction()==MotionEvent.ACTION_MOVE)
-    val up = my.touches.filter(_.getAction()==MotionEvent.ACTION_UP)
+    val downs = canvas.touches.filter(_.getAction()==MotionEvent.ACTION_DOWN)
+    val moves = canvas.touches.filter(_.getAction()==MotionEvent.ACTION_MOVE)
+    val ups = canvas.touches.filter(_.getAction()==MotionEvent.ACTION_UP)
     
     def createPath(x: Float, y: Float)={
       val p = new Path
@@ -58,19 +58,15 @@ class ReactiveDemo extends Activity with TypedActivity with Observing {
     }
     
     for{
-      md <- down;
-      p = createPath(md.getX, md.getY);
-      v = move.takeUntil(up).foldLeft(p)((path, evt) => {val p = path; p.lineTo(evt.getX, evt.getY); p}).hold(p);
-      _ = v.foreach({ x=> 
-          my.current = Option(x) 
-          my.invalidate()
-        });
-      um <- up.once;
-      path = v.now;
-      _ = path.moveTo(um.getX, um.getY)
+      down <- downs;
+      path = createPath(down.getX, down.getY);
+      v = moves.takeUntil(ups).foldLeft(path)((p, evt) => {p.lineTo(evt.getX, evt.getY); p}).hold(path);
+      up <- ups.once;
+      currentPath = v.now;
+      _ = currentPath.moveTo(up.getX, up.getY)
     }  {
-      my.paths += path
-      my.invalidate()
+      canvas.paths += currentPath
+      canvas.invalidate()
     }
 
   }
