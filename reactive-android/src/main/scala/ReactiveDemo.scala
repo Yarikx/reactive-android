@@ -60,7 +60,7 @@ class ReactiveDemo extends Activity with TypedActivity with Observing {
     for{
       md <- down;
       p = createPath(md.getX, md.getY);
-      v = move.foldLeft(p)((path, evt) => {val p = new Path(path); p.lineTo(evt.getX, evt.getY); p}).hold(p);
+      v = move.takeUntil(up).foldLeft(p)((path, evt) => {val p = path; p.lineTo(evt.getX, evt.getY); p}).hold(p);
       _ = v.foreach({ x=> 
           my.current = Option(x) 
           my.invalidate()
