@@ -51,19 +51,25 @@ class ReactiveDemo extends Activity with TypedActivity with Observing {
     val move = my.touches.filter(_.getAction()==MotionEvent.ACTION_MOVE)
     val up = my.touches.filter(_.getAction()==MotionEvent.ACTION_UP)
     
+    def createPath(x: Float, y: Float)={
+      val p = new Path
+      p.moveTo(x, y)
+      p
+    }
+    
     for{
       md <- down;
-      val p = {
-        val path = new Path
-        path.moveTo(md.getX, md.getY)
-        path
-      }
+      p = createPath(md.getX, md.getY);
       v = move.foldLeft(p)((path, evt) => {val p = new Path(path); p.lineTo(evt.getX, evt.getY); p}).hold(p);
+      _ = v.foreach({ x=> 
+          my.current = Option(x) 
+          my.invalidate()
+        });
       um <- up.once;
-      path = v.now
+      path = v.now;
+      _ = path.moveTo(um.getX, um.getY)
     }  {
       my.paths += path
-      Log.d("foreach","path added")
       my.invalidate()
     }
 
@@ -71,6 +77,7 @@ class ReactiveDemo extends Activity with TypedActivity with Observing {
 }
 
 class MyCanvas(context: Context) extends View(context) {
+  var current: Option[Path] = None
   val touches = new EventSource[MotionEvent]
   val paths = ListBuffer[Path]()
   override def onTouchEvent(evt: MotionEvent) = {
@@ -81,10 +88,12 @@ class MyCanvas(context: Context) extends View(context) {
   val defPaint = new Paint();
   defPaint.setColor(Color.WHITE)
   defPaint.setStyle(Paint.Style.STROKE);
+  defPaint.setAntiAlias(true)
   override def onDraw(c: Canvas){
     super.onDraw(c)
     
     paths.foreach(c.drawPath(_, defPaint))
+    current.foreach(c.drawPath(_, defPaint))
     
   }
 }
