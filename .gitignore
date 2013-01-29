@@ -19,3 +19,4 @@ jrockit.*.dump
 /.idea/
 /.idea_modules/
 *.swp
+.cache
