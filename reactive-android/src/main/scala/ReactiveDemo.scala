@@ -69,6 +69,15 @@ class ReactiveDemo extends Activity with TypedActivity with Observing {
       canvas.invalidate()
     }
 
+    val v1 = Var(2)
+    val v2 = Var(3)
+    val v3 = Var(12)
+
+    val yes = for(
+      x <- v1;
+      y <- v2
+    ) yield { x + y }
+
   }
 }
 

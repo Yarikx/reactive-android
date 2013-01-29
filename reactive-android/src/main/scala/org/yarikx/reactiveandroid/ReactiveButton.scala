@@ -11,13 +11,12 @@ trait ReactiveButton extends Button
 
 object ReactiveButton {
   def apply(context: Context) =
-    ret(new Button(context) with ReactiveButton)
+    new Button(context) with ReactiveButton
 
   def apply(context: Context, attrs: AttributeSet, defStyle: Int) =
-    ret(new Button(context, attrs, defStyle) with ReactiveButton)
+    new Button(context, attrs, defStyle) with ReactiveButton
 
   def apply(context: Context, attrs: AttributeSet) =
-    ret(new Button(context, attrs) with ReactiveButton)
+    new Button(context, attrs) with ReactiveButton
 
-  private def ret[A <: ReactiveView](b: A) = { b.install(); b }
 }
