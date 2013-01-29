@@ -18,3 +18,4 @@ jrockit.*.dump
 .settings
 /.idea/
 /.idea_modules/
+*.swp
