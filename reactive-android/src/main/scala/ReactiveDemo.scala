@@ -32,15 +32,12 @@ class ReactiveDemo extends Activity with TypedActivity with Observing {
 
     findView(TR.textview).setText("hello, scala world is hard, not for everyone")
 
-    val b = ReactiveButton(this)
-    b.setText("Push me")
+    val b = findView(TR.rbutton)
     val pane = findView(TR.pane)
 
     b.clicks.foldLeft(0)((x, _) => x + 1).foreach { x =>
       Toast.makeText(this, "" + x, Toast.LENGTH_SHORT).show();
     }
-
-    pane.addView(b)
 
     val mainStream = new EventSource[MotionEvent]()
 
