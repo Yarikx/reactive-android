@@ -8,5 +8,6 @@
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/reactive-core"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/TR"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

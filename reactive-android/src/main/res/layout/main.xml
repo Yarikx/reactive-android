@@ -11,12 +11,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <org.yarikx.reactiveandroid.ReactiveButtonHelper
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/rbutton"
-        android:text="hack you java!"
+    <org.yarikx.reactiveandroid.ReactiveSeekbarHelper
+        android:id="@+id/seekbar1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
+    
+    <org.yarikx.reactiveandroid.ReactiveSeekbarHelper
+        android:id="@+id/seekbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    
+    <org.yarikx.reactiveandroid.ReactiveButtonHelper
+        android:id="@+id/rbutton"
+        android:text="hack you, java"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
