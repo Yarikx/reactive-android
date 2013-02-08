@@ -1,15 +1,16 @@
-package org.yarikx.reactiveandroid
+package org.yarikx.reactiveandroid.view
 
 import android.widget.SeekBar
-import reactive.Var
+import org.yarikx.reactiveandroid.model.{Reactor, VarHolder}
 
-trait ReactiveSeekbar extends SeekBar {
+trait ReactiveSeekbar extends SeekBar with Reactor[Int] with VarHolder[Int] {
 
-  lazy val value = Var[Int](this.getProgress())
+  def react(v: Int) = this.setProgress(v)
+  def current = this.getProgress()
 
   setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener {
     def onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-    	value.update(progress)
+      update(progress)
     }
     def onStartTrackingTouch(seekBar: SeekBar) {
 

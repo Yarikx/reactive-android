@@ -29,6 +29,7 @@
 "/home/yarik/scala/reactive-android/reactive-android/target/scala-2.9.2/src_managed/main/scala"
 "/home/yarik/scala/reactive-android/reactive-android/src/test/scala"
 "/home/yarik/scala/reactive-android/reactive-android/src/test/java"
+"/home/yarik/scala/reactive-android/reactive-core/src/main/scala/"
 "/home/yarik/scala/reactive-android/reactive-android/target/scala-2.9.2/src_managed/test")
 :test-deps
 ("/home/yarik/scala/reactive-android/reactive-android/lib/reactive-core_2.9.2.jar"

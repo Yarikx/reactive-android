@@ -1,8 +1,9 @@
-package org.yarikx.reactiveandroid
+package org.yarikx.reactiveandroid.view
 
 import android.content.Context
 import android.widget.Button
 import android.util.AttributeSet
+import org.yarikx.reactiveandroid.model.ReactiveClicker
 
 trait ReactiveButton extends Button
   with ReactiveClicker {

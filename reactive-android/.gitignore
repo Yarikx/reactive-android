@@ -6,3 +6,4 @@ proguard_cache/
 *.swp
 target/
 project/target/
+.ensime_lucene/
