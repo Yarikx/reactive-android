@@ -6,7 +6,7 @@ import AndroidKeys._
 object General {
   val settings = Defaults.defaultSettings ++ Seq (
     name := "Reactive Android",
-    version := "0.1",
+    version := "0.2",
     versionCode := 0,
     scalaVersion := "2.9.2",
     platformName in Android := "android-16"
@@ -26,6 +26,7 @@ object General {
       keyalias in Android := "change-me",
       libraryDependencies += "org.scalatest" %% "scalatest" % "1.8" % "test"
     )
+
 }
 
 object AndroidBuild extends Build {
@@ -33,7 +34,7 @@ object AndroidBuild extends Build {
     "ReactiveAndroid",
     file("."),
     settings = General.fullAndroidSettings
-  )
+  ) dependsOn core
 
   lazy val tests = Project (
     "tests",
@@ -44,4 +45,10 @@ object AndroidBuild extends Build {
       name := "Reactive AndroidTests"
     )
   ) dependsOn main
+
+  lazy val core = Project (
+    "core",
+    file("reactive-core"),
+    settings = General.settings
+  )
 }
