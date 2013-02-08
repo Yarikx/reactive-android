@@ -6,9 +6,10 @@
 :module-name
 "reactive-core"
 :compile-deps
-("/home/yarik/.sbt/boot/scala-2.9.2/lib/scala-library.jar")
+("/home/yarik/android/react/reactive-android/reactive-android/doesnotexist"
+"/home/yarik/.sbt/boot/scala-2.9.2/lib/scala-library.jar")
 :version
-"0.2"
+"0.3.0"
 :test-target
 "/home/yarik/android/react/reactive-android/reactive-core/target/scala-2.9.2/test-classes"
 :name
@@ -29,7 +30,11 @@
 "/home/yarik/android/react/reactive-android/reactive-android/reactive-core/target/scala-2.9.2/src_managed/test")
 :test-deps
 ("/home/yarik/.sbt/boot/scala-2.9.2/lib/scala-library.jar"
-"/home/yarik/android/react/reactive-android/reactive-android/reactive-core/target/scala-2.9.2/classes"))
+"/home/yarik/.ivy2/cache/org.scalatest/scalatest_2.9.2/jars/scalatest_2.9.2-2.0.M6-SNAP3.jar"
+"/home/yarik/.ivy2/cache/org.scalacheck/scalacheck_2.9.2/jars/scalacheck_2.9.2-1.10.1-SNAPSHOT.jar"
+"/home/yarik/.ivy2/cache/org.scala-tools.testing/test-interface/jars/test-interface-0.5.jar"
+"/home/yarik/android/react/reactive-android/reactive-android/reactive-core/target/scala-2.9.2/classes"
+"/home/yarik/android/react/reactive-android/reactive-android/reactive-core/target/scala-2.9.2/test-classes"))
 (:runtime-deps
 ("/home/yarik/android/adt-bundle-linux/sdk/platforms/android-16/android.jar"
 "/home/yarik/.sbt/boot/scala-2.9.2/lib/scala-library.jar"
