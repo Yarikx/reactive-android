@@ -27,6 +27,17 @@ object General {
       libraryDependencies += "org.scalatest" %% "scalatest" % "1.8" % "test"
     )
 
+  lazy val androidLibSettings = 
+    Defaults.defaultSettings ++
+    AndroidProject.androidSettings ++
+    Seq (
+    version := "0.2",
+    versionCode := 0,
+    scalaVersion := "2.9.2",
+    platformName in Android := "android-16"
+  )
+
+
 }
 
   
@@ -34,7 +45,7 @@ object AndroidBuild extends Build {
   lazy val android = Project (
     "android",
     file("reactive-android"),
-    settings = General.fullAndroidSettings
+    settings = General.androidLibSettings
   ) dependsOn core
 
   lazy val core = Project (
@@ -51,6 +62,12 @@ object AndroidBuild extends Build {
                General.proguardSettings ++ Seq (
       name := "Reactive AndroidTests"
     )
+  ) dependsOn android
+
+  lazy val ademo = Project (
+    "demo",
+    file("reactive-demo"),
+    settings = General.fullAndroidSettings
   ) dependsOn android
 
   val sonatypeSnapshots = "http://oss.sonatype.org/content/repositories/snapshots/"

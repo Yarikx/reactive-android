@@ -1,4 +1,4 @@
-package com.yarikx.reactiveandroid
+package com.yarikx.reactiveandroid.demo
 
 import android.app.Activity
 import android.content.Context
