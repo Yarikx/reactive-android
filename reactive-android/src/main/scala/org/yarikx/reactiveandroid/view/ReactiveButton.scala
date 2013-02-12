@@ -1,14 +1,9 @@
 package org.yarikx.reactiveandroid.view
 
 import android.content.Context
-import android.widget.Button
 import android.util.AttributeSet
+import android.widget.Button
 import org.yarikx.reactiveandroid.model.ReactiveClicker
-
-trait ReactiveButton extends Button
-  with ReactiveClicker {
-
-}
 
 object ReactiveButton {
   def apply(context: Context) =
