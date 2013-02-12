@@ -4,6 +4,7 @@ It contains some improvemet of original library and android library for use it w
 This is the reactive top-level repository. It contains the following subprojects:
 
 # reactive-core: This is the general-purpose FRP library
-# reactive-android: android library and demo application
+# reactive-android: android library
+# reactive-demo: android demo application
 
 See the READMEs in the individual projects, and the wiki pages, for more details.
