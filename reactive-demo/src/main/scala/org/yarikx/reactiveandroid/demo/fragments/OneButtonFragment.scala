@@ -1,10 +1,10 @@
-package com.yarikx.reactiveandroid.demo
+package org.yarikx.reactiveandroid.demo
 
 import android.app.{ Activity, Fragment }
 import android.os.Bundle
 import android.view.{ LayoutInflater, ViewGroup }
-import com.yarikx.reactiveandroid.demo.TypedResource._
-import com.yarikx.reactiveandroid.demo.utils.Utils._
+import org.yarikx.reactiveandroid.demo.TypedResource._
+import org.yarikx.reactiveandroid.demo.utils.Utils._
 import reactive.Observing
 
 class OneButtonFragment extends Fragment with Observing {

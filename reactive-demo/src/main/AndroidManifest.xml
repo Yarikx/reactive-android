@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yarikx.reactiveandroid.demo" >
+    package="org.yarikx.reactiveandroid.demo" >
 
     <uses-sdk
         android:minSdkVersion="8"

@@ -3,9 +3,10 @@ package org.yarikx.reactiveandroid.util
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.{Button, EditText, SeekBar, TextView}
-import org.yarikx.reactiveandroid.view.{ReactiveButton, ReactiveEditText, ReactiveSeekbar, ReactiveTextView}
+import org.yarikx.reactiveandroid.model.ReactiveClicker
+import org.yarikx.reactiveandroid.view.{ReactiveEditText, ReactiveSeekbar, ReactiveTextView}
 
-class ReactiveButtonHelper(context: Context, attrs: AttributeSet) extends Button(context, attrs) with ReactiveButton
+class ReactiveButtonHelper(context: Context, attrs: AttributeSet) extends Button(context, attrs) with ReactiveClicker
 
 class ReactiveSeekbarHelper(context: Context, attrs: AttributeSet) extends SeekBar(context, attrs) with ReactiveSeekbar
 

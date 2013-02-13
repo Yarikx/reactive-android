@@ -1,9 +1,9 @@
-package com.yarikx.reactiveandroid.demo
+package org.yarikx.reactiveandroid.demo
 
 import android.app.Activity
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import com.yarikx.reactiveandroid.demo.utils.ActivityUtils
+import org.yarikx.reactiveandroid.demo.utils.ActivityUtils
 import scala.collection.JavaConversions._
 
 class DemoActivity extends Activity with ActivityUtils with TypedActivity {
