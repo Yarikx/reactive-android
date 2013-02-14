@@ -1,7 +1,7 @@
 package org.yarikx.reactiveandroid.demo
 
-import android.app.{ Activity, Fragment }
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.{ LayoutInflater, ViewGroup }
 import org.yarikx.reactiveandroid.demo.TypedResource._
 import org.yarikx.reactiveandroid.demo.utils.Utils._
