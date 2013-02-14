@@ -67,7 +67,9 @@ object AndroidBuild extends Build {
   lazy val ademo = Project (
     "demo",
     file("reactive-demo"),
-    settings = General.fullAndroidSettings
+    settings = General.fullAndroidSettings ++ Seq(
+      libraryDependencies += "com.google.android" % "support-v4" % "r7"
+    )
   ) dependsOn android
 
   val sonatypeSnapshots = "http://oss.sonatype.org/content/repositories/snapshots/"

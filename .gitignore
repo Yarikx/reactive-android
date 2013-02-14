@@ -20,4 +20,4 @@ jrockit.*.dump
 /.idea_modules/
 *.swp
 .cache
-.ensime_l*
+.ensime*
