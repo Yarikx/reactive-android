@@ -3,13 +3,16 @@ package org.yarikx.reactiveandroid.demo
 import android.os.Bundle
 import android.support.v4.app.{ FragmentActivity, ListFragment }
 import android.widget.ArrayAdapter
+import org.yarikx.reactiveandroid.demo.fragments.OneButtonFragment
+import org.yarikx.reactiveandroid.demo.fragments.TwoButtonsFragment
 import org.yarikx.reactiveandroid.demo.utils.ActivityUtils
 import scala.collection.JavaConversions._
 
 class DemoActivity extends FragmentActivity with ActivityUtils with TypedActivity {
 
   val demos = List(
-    "First demo" -> new OneButtonFragment)
+    "Simple button" -> new OneButtonFragment,
+    "Two buttons, one handler" -> new TwoButtonsFragment)
 
   val demosMap = demos.toMap
   lazy val fm = this.getSupportFragmentManager()
