@@ -3,8 +3,7 @@ package org.yarikx.reactiveandroid.demo
 import android.os.Bundle
 import android.support.v4.app.{ FragmentActivity, ListFragment }
 import android.widget.ArrayAdapter
-import org.yarikx.reactiveandroid.demo.fragments.OneButtonFragment
-import org.yarikx.reactiveandroid.demo.fragments.TwoButtonsFragment
+import org.yarikx.reactiveandroid.demo.fragments.{ FoldFragment, OneButtonFragment, TwoButtonsFragment }
 import org.yarikx.reactiveandroid.demo.utils.ActivityUtils
 import scala.collection.JavaConversions._
 
@@ -12,12 +11,14 @@ class DemoActivity extends FragmentActivity with ActivityUtils with TypedActivit
 
   val demos = List(
     "Simple button" -> new OneButtonFragment,
-    "Two buttons, one handler" -> new TwoButtonsFragment)
+    "Two buttons, one handler" -> new TwoButtonsFragment,
+    "Fold" -> new FoldFragment)
 
   val demosMap = demos.toMap
   lazy val fm = this.getSupportFragmentManager()
   lazy val frame = findView(TR.frame_layout)
   lazy val smallScreen = frame != null
+  var currentPosition = -1
 
   var list: ListFragment = null
 
@@ -38,17 +39,20 @@ class DemoActivity extends FragmentActivity with ActivityUtils with TypedActivit
     super.onPostCreate(bundle)
 
     list.getListView().setOnItemClickListener { pos: Int =>
-      val tag = demos(pos)._1
-      val fragment = demosMap(tag)
+      if (currentPosition != pos) {
+        currentPosition = pos
+        val tag = demos(pos)._1
+        val fragment = demosMap(tag)
 
-      val transaction = fm.beginTransaction
-      if (smallScreen) {
-        transaction.replace(R.id.frame_layout, fragment, tag)
-        transaction.addToBackStack(null)
-      } else {
-        transaction.replace(R.id.demo_content, fragment, tag)
+        val transaction = fm.beginTransaction
+        if (smallScreen) {
+          transaction.replace(R.id.frame_layout, fragment, tag)
+          transaction.addToBackStack(null)
+        } else {
+          transaction.replace(R.id.demo_content, fragment)
+        }
+        transaction.commit()
       }
-      transaction.commit()
     }
 
     val adapter = new ArrayAdapter[String](this, android.R.layout.simple_list_item_1, demos.map(_._1))
