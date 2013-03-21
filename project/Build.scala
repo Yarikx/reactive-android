@@ -9,12 +9,13 @@ object General {
     version := "0.2",
     versionCode := 0,
     scalaVersion := "2.10.1",
-    platformName in Android := "android-16"
+    platformName in Android := "android-16",
+    javacOptions ++= Seq("-source", "1.6", "-target", "1.6")
   )
 
   val proguardSettings = Seq (
-    useProguard in Android := true,
-    javacOptions ++= Seq("-source", "1.6", "-target", "1.6")
+    skipScalaLibrary in Android := true, 
+    useProguard in Android := false
   )
 
   lazy val fullAndroidSettings =
@@ -34,6 +35,7 @@ object General {
     Seq (
     version := "0.2",
     versionCode := 0,
+    javacOptions ++= Seq("-source", "1.6", "-target", "1.6"),
     scalaVersion := "2.10.1",
     platformName in Android := "android-16"
   )
@@ -77,6 +79,7 @@ object AndroidBuild extends Build {
   val coreDefaults = Defaults.defaultSettings ++ Seq(
       version := "0.3.0",
       scalaVersion := "2.10.0",
+      javacOptions ++= Seq("-source", "1.6", "-target", "1.6"),
       resolvers ++= List(
         "Sonatype snapshots" at sonatypeSnapshots,
         "Java.net Maven2 Repository" at "http://download.java.net/maven/2/"
