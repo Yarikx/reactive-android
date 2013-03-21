@@ -8,12 +8,13 @@ object General {
     name := "Reactive Android",
     version := "0.2",
     versionCode := 0,
-    scalaVersion := "2.9.2",
+    scalaVersion := "2.10.1",
     platformName in Android := "android-16"
   )
 
   val proguardSettings = Seq (
-    useProguard in Android := true
+    useProguard in Android := true,
+    javacOptions ++= Seq("-source", "1.6", "-target", "1.6")
   )
 
   lazy val fullAndroidSettings =
@@ -24,7 +25,7 @@ object General {
     AndroidManifestGenerator.settings ++
     AndroidMarketPublish.settings ++ Seq (
       keyalias in Android := "change-me",
-      libraryDependencies += "org.scalatest" %% "scalatest" % "1.8" % "test"
+      libraryDependencies += "org.scalatest" %% "scalatest" % "1.9.1" % "test"
     )
 
   lazy val androidLibSettings = 
@@ -33,7 +34,7 @@ object General {
     Seq (
     version := "0.2",
     versionCode := 0,
-    scalaVersion := "2.9.2",
+    scalaVersion := "2.10.1",
     platformName in Android := "android-16"
   )
 
@@ -75,6 +76,7 @@ object AndroidBuild extends Build {
   val sonatypeSnapshots = "http://oss.sonatype.org/content/repositories/snapshots/"
   val coreDefaults = Defaults.defaultSettings ++ Seq(
       version := "0.3.0",
+      scalaVersion := "2.10.0",
       resolvers ++= List(
         "Sonatype snapshots" at sonatypeSnapshots,
         "Java.net Maven2 Repository" at "http://download.java.net/maven/2/"
