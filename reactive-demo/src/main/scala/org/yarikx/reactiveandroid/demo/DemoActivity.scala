@@ -6,15 +6,17 @@ import android.widget.ArrayAdapter
 import org.yarikx.reactiveandroid.demo.fragments.{ FoldFragment, OneButtonFragment, TwoButtonsFragment }
 import org.yarikx.reactiveandroid.demo.utils.ActivityUtils
 import scala.collection.JavaConversions._
+import scala.collection.immutable.ListMap
 
 class DemoActivity extends FragmentActivity with ActivityUtils with TypedActivity {
 
-  val demos = List(
+  val demosMap = ListMap(
     "Simple button" -> new OneButtonFragment,
     "Two buttons, one handler" -> new TwoButtonsFragment,
     "Fold" -> new FoldFragment)
 
-  val demosMap = demos.toMap
+  val tags = demosMap.map{case (tag, _) => tag}.toSeq
+
   lazy val fm = this.getSupportFragmentManager()
   lazy val frame = findView(TR.frame_layout)
   lazy val smallScreen = frame != null
@@ -41,7 +43,7 @@ class DemoActivity extends FragmentActivity with ActivityUtils with TypedActivit
     list.getListView().setOnItemClickListener { pos: Int =>
       if (currentPosition != pos) {
         currentPosition = pos
-        val tag = demos(pos)._1
+        val tag = tags(pos)
         val fragment = demosMap(tag)
 
         val transaction = fm.beginTransaction
@@ -55,7 +57,7 @@ class DemoActivity extends FragmentActivity with ActivityUtils with TypedActivit
       }
     }
 
-    val adapter = new ArrayAdapter[String](this, android.R.layout.simple_list_item_1, demos.map(_._1))
+    val adapter = new ArrayAdapter[String](this, android.R.layout.simple_list_item_1, tags)
     list.setListAdapter(adapter)
   }
 }
