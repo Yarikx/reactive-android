@@ -19,6 +19,7 @@ class DemoActivity extends FragmentActivity with ActivityUtils with TypedActivit
 
   lazy val fm = this.getSupportFragmentManager()
   lazy val frame = findView(TR.frame_layout)
+  lazy val logView = findView(TR.logger)
   lazy val smallScreen = frame != null
   var currentPosition = -1
 
@@ -60,5 +61,7 @@ class DemoActivity extends FragmentActivity with ActivityUtils with TypedActivit
     val adapter = new ArrayAdapter[String](this, android.R.layout.simple_list_item_1, tags)
     list.setListAdapter(adapter)
   }
+
+  def log(s: String) = logView.setText(logView.getText()+s+"\n")
 }
 

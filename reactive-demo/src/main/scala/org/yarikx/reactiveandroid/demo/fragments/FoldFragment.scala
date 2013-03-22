@@ -17,7 +17,7 @@ class FoldFragment extends Fragment with Observing {
     button.clicks
       .foldLeft(0)((x, _) => x+1)
       .foreach(x =>
-      toast(x+" times clicked", getActivity))
+      toast(s"$x times clicked", getActivity))
 
     view
   }
