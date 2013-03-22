@@ -12,19 +12,33 @@
         android:layout_alignParentTop="true"
         class="android.support.v4.app.ListFragment" />
 
-    <TextView
-        android:id="@+id/logger"
+    <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/list_frag" />
+        android:layout_toRightOf="@+id/list_frag" >
+        <TextView
+            android:id="@+id/logger"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_above="@+id/scroll"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/list_frag"
+        android:background="#ffffff" />
 
     <FrameLayout
         android:id="@+id/demo_content"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_above="@+id/logger"
+        android:layout_above="@+id/scroll"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/list_frag" >

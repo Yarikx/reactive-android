@@ -2,7 +2,10 @@ package org.yarikx.reactiveandroid.demo
 
 import android.os.Bundle
 import android.support.v4.app.{ FragmentActivity, ListFragment }
+import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.ScrollView
+import android.widget.TextView
 import org.yarikx.reactiveandroid.demo.fragments.{ FoldFragment, OneButtonFragment, TwoButtonsFragment }
 import org.yarikx.reactiveandroid.demo.utils.ActivityUtils
 import scala.collection.JavaConversions._
@@ -19,7 +22,8 @@ class DemoActivity extends FragmentActivity with ActivityUtils with TypedActivit
 
   lazy val fm = this.getSupportFragmentManager()
   lazy val frame = findView(TR.frame_layout)
-  lazy val logView = findView(TR.logger)
+  lazy val logView = findViewById(R.id.logger).asInstanceOf[TextView]
+  lazy val scrollView = findViewById(R.id.scroll).asInstanceOf[ScrollView]
   lazy val smallScreen = frame != null
   var currentPosition = -1
 
@@ -62,6 +66,9 @@ class DemoActivity extends FragmentActivity with ActivityUtils with TypedActivit
     list.setListAdapter(adapter)
   }
 
-  def log(s: String) = logView.setText(logView.getText()+s+"\n")
+  def log(s: String) {
+    logView.setText(logView.getText()+s+"\n")
+    scrollView.fullScroll(View.FOCUS_DOWN)
+  }
 }
 

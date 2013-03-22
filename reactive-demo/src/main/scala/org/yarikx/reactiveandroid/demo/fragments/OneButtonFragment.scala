@@ -8,14 +8,14 @@ import org.yarikx.reactiveandroid.demo.TypedResource._
 import org.yarikx.reactiveandroid.demo.utils.Utils._
 import reactive.Observing
 
-class OneButtonFragment extends Fragment with Observing {
+class OneButtonFragment extends DemoFragment with Observing {
 
   override def onCreateView(inflater: LayoutInflater, vg: ViewGroup, bundle: Bundle) = {
     val view = inflater.inflate(R.layout.one_button_fragment, vg, false)
     val button = view.findView(TR.button)
 
     button.clicks.foreach(_ =>
-      toast("Clicked", getActivity))
+      log("Clicked"))
 
     view
   }

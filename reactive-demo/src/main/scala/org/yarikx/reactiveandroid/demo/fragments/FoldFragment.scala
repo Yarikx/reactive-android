@@ -8,7 +8,7 @@ import org.yarikx.reactiveandroid.demo.TypedResource._
 import org.yarikx.reactiveandroid.demo.utils.Utils._
 import reactive.Observing
 
-class FoldFragment extends Fragment with Observing {
+class FoldFragment extends DemoFragment with Observing {
 
   override def onCreateView(inflater: LayoutInflater, vg: ViewGroup, bundle: Bundle) = {
     val view = inflater.inflate(R.layout.fold_fragment, vg, false)
@@ -17,7 +17,7 @@ class FoldFragment extends Fragment with Observing {
     button.clicks
       .foldLeft(0)((x, _) => x+1)
       .foreach(x =>
-      toast(s"$x times clicked", getActivity))
+      log(s"$x times clicked"))
 
     view
   }
