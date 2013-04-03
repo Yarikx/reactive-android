@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ReactiveDemo</string>
     <string name="push_me">Push me</string>
+    <string name="link_second_bar_with_first">link second bar with first</string>
 </resources>
