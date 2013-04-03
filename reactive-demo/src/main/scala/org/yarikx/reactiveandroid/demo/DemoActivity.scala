@@ -1,5 +1,6 @@
 package org.yarikx.reactiveandroid.demo
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.{ FragmentActivity, ListFragment }
 import android.view.View
@@ -8,22 +9,20 @@ import android.widget.ScrollView
 import android.widget.TextView
 import org.yarikx.reactiveandroid.demo.fragments.{ FoldFragment, OneButtonFragment, TwoButtonsFragment }
 import org.yarikx.reactiveandroid.demo.utils.ActivityUtils
+import org.yarikx.reactiveandroid.demo.utils.LogActivity
 import scala.collection.JavaConversions._
 import scala.collection.immutable.ListMap
 
-class DemoActivity extends FragmentActivity with ActivityUtils with TypedActivity {
+class DemoActivity extends FragmentActivity with ActivityUtils with TypedActivity with LogActivity{
 
-  val demosMap = ListMap(
-    "Simple button" -> new OneButtonFragment,
-    "Two buttons, one handler" -> new TwoButtonsFragment,
-    "Fold" -> new FoldFragment)
+  lazy val app = getApplication().asInstanceOf[Scalapp]
 
-  val tags = demosMap.map{case (tag, _) => tag}.toSeq
+  lazy val demosMap = app.demosMap
+
+  lazy val tags = demosMap.map { case (tag, _) => tag }.toSeq
 
   lazy val fm = this.getSupportFragmentManager()
   lazy val frame = findView(TR.frame_layout)
-  lazy val logView = findViewById(R.id.logger).asInstanceOf[TextView]
-  lazy val scrollView = findViewById(R.id.scroll).asInstanceOf[ScrollView]
   lazy val smallScreen = frame != null
   var currentPosition = -1
 
@@ -35,7 +34,7 @@ class DemoActivity extends FragmentActivity with ActivityUtils with TypedActivit
 
     if (smallScreen) {
       list = new ListFragment
-      fm.beginTransaction.add(R.id.frame_layout, list, "Listfrgm").commit()
+      fm.beginTransaction.replace(R.id.frame_layout, list, "Listfrgm").commit()
     } else {
       list = fm.findFragmentById(R.id.list_frag).asInstanceOf[ListFragment]
     }
@@ -46,29 +45,29 @@ class DemoActivity extends FragmentActivity with ActivityUtils with TypedActivit
     super.onPostCreate(bundle)
 
     list.getListView().setOnItemClickListener { pos: Int =>
-      if (currentPosition != pos) {
-        currentPosition = pos
-        val tag = tags(pos)
-        val fragment = demosMap(tag)
+      val tag = tags(pos)
+      if (smallScreen) {
+        val intent = new Intent(this, classOf[ContentActivity])
+        intent.putExtra("fragment", tag)
+        startActivity(intent)
+      } else {
+        if (currentPosition != pos) {
+          currentPosition = pos
 
-        val transaction = fm.beginTransaction
-        if (smallScreen) {
-          transaction.replace(R.id.frame_layout, fragment, tag)
-          transaction.addToBackStack(null)
-        } else {
-          transaction.replace(R.id.demo_content, fragment)
+          val fragment = demosMap(tag)
+
+          fm.beginTransaction
+            .replace(R.id.demo_content, fragment)
+            .commit()
         }
-        transaction.commit()
+
       }
+
     }
 
     val adapter = new ArrayAdapter[String](this, android.R.layout.simple_list_item_1, tags)
     list.setListAdapter(adapter)
   }
 
-  def log(s: String) {
-    logView.setText(logView.getText()+s+"\n")
-    scrollView.fullScroll(View.FOCUS_DOWN)
-  }
 }
 

@@ -15,7 +15,7 @@
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:layout_height="@dimen/debug_window_height"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@+id/list_frag" >

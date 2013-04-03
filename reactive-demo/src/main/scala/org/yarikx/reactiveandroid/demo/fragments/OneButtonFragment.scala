@@ -21,4 +21,3 @@ class OneButtonFragment extends DemoFragment with Observing {
   }
 
 }
-
