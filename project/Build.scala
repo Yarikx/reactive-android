@@ -6,7 +6,8 @@ import AndroidKeys._
 object General {
   val settings = Defaults.defaultSettings ++ Seq (
     name := "Reactive Android",
-    version := "0.2",
+    version := "0.3",
+    organization := "org.yarikx", 
     versionCode := 0,
     scalaVersion := "2.10.1",
     platformName in Android := "android-16",
@@ -33,7 +34,9 @@ object General {
     Defaults.defaultSettings ++
     AndroidProject.androidSettings ++
     Seq (
-    version := "0.2",
+    name := "Reactive Android",
+    version := "0.3",
+    organization := "org.yarikx", 
     versionCode := 0,
     javacOptions ++= Seq("-source", "1.6", "-target", "1.6"),
     scalaVersion := "2.10.1",
@@ -48,8 +51,11 @@ object AndroidBuild extends Build {
   lazy val android = Project (
     "android",
     file("reactive-android"),
-    settings = General.androidLibSettings
-  ) dependsOn core
+    settings = General.androidLibSettings ++ Seq(
+      libraryDependencies += "org.yarikx" %% "reactive-core" % "0.3.0"
+    )
+
+  )
 
   lazy val core = Project (
     "core",
@@ -71,13 +77,19 @@ object AndroidBuild extends Build {
     "demo",
     file("reactive-demo"),
     settings = General.fullAndroidSettings ++ Seq(
-      libraryDependencies += "com.google.android" % "support-v4" % "r7"
+      name := "Reactive demo", 
+      libraryDependencies ++= Seq(
+        "com.google.android" % "support-v4" % "r7",
+        "org.yarikx" %% "reactive-android" % "0.3"
+      )
     )
-  ) dependsOn android
+  )
 
   val sonatypeSnapshots = "http://oss.sonatype.org/content/repositories/snapshots/"
   val coreDefaults = Defaults.defaultSettings ++ Seq(
       version := "0.3.0",
+      name := "reactive-core",
+      organization := "org.yarikx", 
       scalaVersion := "2.10.0",
       javacOptions ++= Seq("-source", "1.6", "-target", "1.6"),
       resolvers ++= List(
@@ -86,10 +98,7 @@ object AndroidBuild extends Build {
       ),
       checksums in update := Nil,
       scalacOptions in (Compile, compile) += "-deprecation",
-      (scalacOptions in (Compile, doc) <++= (baseDirectory).map{ bd =>
-        Seq("-sourcepath", bd.getAbsolutePath, "-doc-source-url", "http://github.com/nafg/reactive/tree€{FILE_PATH}.scala")
-      }),
-      crossScalaVersions := List("2.10.0", "2.9.2"),
+      crossScalaVersions := List("2.10.0", "2.10.1", "2.9.2"),
       libraryDependencies <++= (scalaVersion) { v => List(
            "org.scalatest" %% "scalatest" % (
              if(v startsWith "2.9") "2.0.M6-SNAP3"
