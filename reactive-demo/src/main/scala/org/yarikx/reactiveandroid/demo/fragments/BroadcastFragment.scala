@@ -19,7 +19,7 @@ class BroadcastFragment extends DemoFragment with Observing {
   override def onCreate(bundle: Bundle) {
     super.onCreate(bundle)
 
-    receiver.intents
+    receiver.eventStream
       .map {
         case (_, intent) => calculateBatteryLevel(intent)
       }
