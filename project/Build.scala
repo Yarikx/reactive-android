@@ -32,7 +32,6 @@ object General {
 
   lazy val androidLibSettings = 
     Defaults.defaultSettings ++
-    AndroidProject.androidSettings ++
     Seq (
     name := "Reactive Android",
     version := "0.3.1",
@@ -40,7 +39,10 @@ object General {
     versionCode := 0,
     javacOptions ++= Seq("-source", "1.6", "-target", "1.6"),
     scalaVersion := "2.10.1",
-    platformName in Android := "android-16"
+    libraryDependencies ++= Seq(
+      "org.yarikx" %% "reactive-core" % "0.3.0",
+      "com.google.android" % "android" % "4.0.1.2"
+    )
   )
 
 
@@ -51,10 +53,7 @@ object AndroidBuild extends Build {
   lazy val android = Project (
     "android",
     file("reactive-android"),
-    settings = General.androidLibSettings ++ Seq(
-      libraryDependencies += "org.yarikx" %% "reactive-core" % "0.3.0"
-    )
-
+    settings = General.androidLibSettings
   )
 
   lazy val core = Project (
