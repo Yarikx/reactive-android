@@ -1,20 +1,22 @@
 package org.yarikx.reactiveandroid.demo.fragments
 
-import android.content.{Context, Intent, IntentFilter}
-import android.os.{BatteryManager, Bundle}
+import android.content.{ Context, Intent, IntentFilter }
+import android.os.{ BatteryManager, Bundle }
 import android.support.v4.app.Fragment
-import android.view.{LayoutInflater, ViewGroup}
-import org.yarikx.reactiveandroid.demo.{R, TR}
+import android.view.{ LayoutInflater, ViewGroup }
+import org.yarikx.reactiveandroid.demo.{ R, TR }
 import org.yarikx.reactiveandroid.demo.TypedResource._
 import org.yarikx.reactiveandroid.demo.utils.Utils._
 import org.yarikx.reactiveandroid.receiver.ReactiveReceiver
-import reactive.{EventSource, Observing}
+import org.yarikx.reactiveandroid.util.AndroidUtils._
+import reactive.{ EventSource, Observing }
 
 class BroadcastFragment extends DemoFragment with Observing {
 
   val receiver = new ReactiveReceiver()
   val action = "android.intent.action.BATTERY_CHANGED"
   val filter = new IntentFilter(action)
+  lazy implicit val activity = getActivity()
 
   override def onCreate(bundle: Bundle) {
     super.onCreate(bundle)
@@ -23,6 +25,8 @@ class BroadcastFragment extends DemoFragment with Observing {
       .map {
         case (_, intent) => calculateBatteryLevel(intent)
       }
+      .nonblocking
+      .inUi
       .foreach(s => log(s))
   }
 

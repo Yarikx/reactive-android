@@ -21,3 +21,7 @@ jrockit.*.dump
 *.swp
 .cache
 .ensime*
+**/.classpath
+**/**/.classpath
+**/.project
+**/**/.project

@@ -35,7 +35,7 @@ object General {
     AndroidProject.androidSettings ++
     Seq (
     name := "Reactive Android",
-    version := "0.3",
+    version := "0.3.1",
     organization := "org.yarikx", 
     versionCode := 0,
     javacOptions ++= Seq("-source", "1.6", "-target", "1.6"),
@@ -79,11 +79,11 @@ object AndroidBuild extends Build {
     settings = General.fullAndroidSettings ++ Seq(
       name := "Reactive demo", 
       libraryDependencies ++= Seq(
-        "com.google.android" % "support-v4" % "r7",
-        "org.yarikx" %% "reactive-android" % "0.3"
+        "org.yarikx" %% "reactive-android" % "0.3.1",
+        "com.google.android" % "support-v4" % "r7"
       )
     )
-  )
+  ) 
 
   val sonatypeSnapshots = "http://oss.sonatype.org/content/repositories/snapshots/"
   val coreDefaults = Defaults.defaultSettings ++ Seq(
