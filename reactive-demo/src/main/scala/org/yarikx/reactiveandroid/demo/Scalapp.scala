@@ -5,11 +5,13 @@ import org.yarikx.reactiveandroid.demo.fragments.Progress2Fragment
 import org.yarikx.reactiveandroid.demo.fragments.BroadcastFragment
 import org.yarikx.reactiveandroid.demo.fragments.{ FoldFragment, OneButtonFragment, ProgressFragment, TwoButtonsFragment }
 import scala.collection.immutable.ListMap
+import org.yarikx.reactiveandroid.demo.fragments.SimpleStreamFragment
 
 class Scalapp extends Application {
 
   val demosMap = ListMap(
-    "Simple button" -> new OneButtonFragment,
+    "Simple stream" -> new SimpleStreamFragment,
+    "One button" -> new OneButtonFragment,
     "Two buttons, one handler" -> new TwoButtonsFragment,
     "Fold" -> new FoldFragment,
     "Progress" -> new ProgressFragment,
