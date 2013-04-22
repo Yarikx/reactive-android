@@ -6,12 +6,10 @@ import reactive.EventSource
 
 trait ReactiveClicker extends View with EventStreamHolder[Unit] {
 
-  val clicks = new EventSource[Unit]
+  lazy val clicks = eventStream
 
-  lazy val mListener = new OnClickListener {
-    def onClick(v: View) = clicks.fire()
-  }
-
-  this.setOnClickListener(mListener);
+  this.setOnClickListener(new OnClickListener {
+    def onClick(v: View) = propagate()
+  });
 
 }
