@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <org.yarikx.reactiveandroid.util.ReactiveButtonHelper
+    <org.yarikx.reactiveandroid.util.RButton
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
