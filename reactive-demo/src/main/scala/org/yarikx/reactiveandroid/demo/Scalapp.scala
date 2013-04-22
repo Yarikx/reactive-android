@@ -6,6 +6,7 @@ import org.yarikx.reactiveandroid.demo.fragments.BroadcastFragment
 import org.yarikx.reactiveandroid.demo.fragments.{ FoldFragment, OneButtonFragment, ProgressFragment, TwoButtonsFragment }
 import scala.collection.immutable.ListMap
 import org.yarikx.reactiveandroid.demo.fragments.SimpleStreamFragment
+import org.yarikx.reactiveandroid.demo.fragments.ComposeSignalFragment
 
 class Scalapp extends Application {
 
@@ -16,6 +17,7 @@ class Scalapp extends Application {
     "Fold" -> new FoldFragment,
     "Progress" -> new ProgressFragment,
     "Progress2" -> new Progress2Fragment,
+    "Signal compose" -> new ComposeSignalFragment,
     "Broadcast" -> new BroadcastFragment)
 
 }
