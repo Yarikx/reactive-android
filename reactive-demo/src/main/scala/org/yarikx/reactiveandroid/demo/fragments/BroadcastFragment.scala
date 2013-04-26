@@ -16,7 +16,6 @@ class BroadcastFragment extends DemoFragment with Observing {
   val receiver = new ReactiveReceiver()
   val action = "android.intent.action.BATTERY_CHANGED"
   val filter = new IntentFilter(action)
-  lazy implicit val activity = getActivity()
 
   override def onCreate(bundle: Bundle) {
     super.onCreate(bundle)
