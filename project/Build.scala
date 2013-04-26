@@ -40,7 +40,7 @@ object General {
     javacOptions ++= Seq("-source", "1.6", "-target", "1.6"),
     scalaVersion := "2.10.1",
     libraryDependencies ++= Seq(
-      "org.yarikx" %% "reactive-core" % "0.3.0",
+      "org.yarikx" %% "reactive-core" % "0.3.1",
       "com.google.android" % "android" % "4.0.1.2"
     )
   )
@@ -86,7 +86,7 @@ object AndroidBuild extends Build {
 
   val sonatypeSnapshots = "http://oss.sonatype.org/content/repositories/snapshots/"
   val coreDefaults = Defaults.defaultSettings ++ Seq(
-      version := "0.3.0",
+      version := "0.3.1",
       name := "reactive-core",
       organization := "org.yarikx", 
       scalaVersion := "2.10.0",
@@ -98,20 +98,12 @@ object AndroidBuild extends Build {
       checksums in update := Nil,
       scalacOptions in (Compile, compile) += "-deprecation",
       crossScalaVersions := List("2.10.0", "2.10.1", "2.9.2"),
-      libraryDependencies <++= (scalaVersion) { v => List(
-           "org.scalatest" %% "scalatest" % (
-             if(v startsWith "2.9") "2.0.M6-SNAP3"
-             else "2.0.M6-SNAP5"
-           ) % "test",
-           "org.scalacheck" %% "scalacheck" % (
-             if(v startsWith "2.8") "1.8"
-             else "1.10.1-SNAPSHOT"
-           ) % "test" cross CrossVersion.full
-        ) ++
-        List("org.scala-lang" % "scala-actors" % v).filter(_ => v startsWith "2.10")
-      },
-      testOptions in Test += Tests.Argument("-oF"),
-      unmanagedClasspath in Compile += Attributed.blank(new java.io.File("doesnotexist"))
-    )
+      libraryDependencies ++= List(
+        "org.scalatest" %% "scalatest" % "2.0.M6-SNAP5" % "test",
+        "org.scalacheck" %% "scalacheck" % "1.10.1-SNAPSHOT" % "test" cross CrossVersion.full,
+        "org.scala-lang" % "scala-actors" % "2.10.0"
+      ),
+      testOptions in Test += Tests.Argument("-oF")
+  )
 
 }

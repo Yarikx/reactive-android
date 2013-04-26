@@ -25,3 +25,5 @@ jrockit.*.dump
 **/**/.classpath
 **/.project
 **/**/.project
+.classpath
+.project
