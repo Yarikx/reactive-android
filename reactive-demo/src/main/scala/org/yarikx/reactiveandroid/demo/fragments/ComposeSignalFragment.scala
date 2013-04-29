@@ -20,7 +20,7 @@ class ComposeSignalFragment extends DemoFragment with Observing {
       x <- slider1.values
       y <- slider2.values
     } yield { s"$x * $y = ${x*y}" }
-    
+
     text.reactOn(generated)
 
     generated.change.throttle(500).inUi.foreach(log)
