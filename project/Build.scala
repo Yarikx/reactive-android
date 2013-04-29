@@ -41,7 +41,7 @@ object General {
     scalaVersion := "2.10.1",
     libraryDependencies ++= Seq(
       "org.yarikx" %% "reactive-core" % "0.3.1",
-      "com.google.android" % "android" % "4.0.1.2"
+      "com.google.android" % "android" % "4.0.1.2" % "provided"
     )
   )
 
@@ -79,7 +79,7 @@ object AndroidBuild extends Build {
       name := "Reactive demo", 
       libraryDependencies ++= Seq(
         "org.yarikx" %% "reactive-android" % "0.3.1",
-        "com.google.android" % "support-v4" % "r7"
+        "com.google.android" % "support-v4" % "r7" 
       )
     )
   ) 
