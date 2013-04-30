@@ -15,7 +15,7 @@ class ContentActivity extends FragmentActivity with LogActivity with TypedActivi
   override def onCreate(bundle: Bundle) {
     super.onCreate(bundle)
     setContentView(R.layout.content_layout)
-    val fragmentName = getIntent.getExtras.getString("fragment", "Simple button")
+    val fragmentName = getIntent.getExtras.getString("fragment")
 
     val app = getApplication().asInstanceOf[Scalapp]
 
