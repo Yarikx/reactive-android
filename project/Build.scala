@@ -1,7 +1,8 @@
 import sbt._
 
 import Keys._
-import AndroidKeys._
+import org.scalasbt.androidplugin.AndroidKeys._
+import org.scalasbt.androidplugin._
 
 object General {
   val settings = Defaults.defaultSettings ++ Seq (
