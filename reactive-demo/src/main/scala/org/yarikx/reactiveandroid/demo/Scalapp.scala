@@ -7,11 +7,15 @@ import org.yarikx.reactiveandroid.demo.fragments._
 import scala.collection.immutable.ListMap
 import org.yarikx.reactiveandroid.demo.fragments.SimpleStreamFragment
 import org.yarikx.reactiveandroid.demo.fragments.ComposeSignalFragment
+import org.yarikx.reactiveandroid.demo.fragments.FilteredFragment
+import org.yarikx.reactiveandroid.demo.fragments.MappedFragment
 
 class Scalapp extends Application {
 
   val demosMap = ListMap(
     "Simple stream" -> new SimpleStreamFragment,
+    "Map" -> new MappedFragment,
+    "Filter" -> new FilteredFragment,
     "One button" -> new OneButtonFragment,
     "Take While" -> new TakeWhileFragment,
     "Until" -> new UntilFragment,
