@@ -1,0 +1,622 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"get",
+				"getOrElse	(<byname>[B])"
+			],
+			[
+				"reac",
+				"reactOn	(Signal[String])"
+			],
+			[
+				"la",
+				"layout	"
+			],
+			[
+				"cl",
+				"clicks	"
+			],
+			[
+				"getC",
+				"getActivity	()"
+			],
+			[
+				"re",
+				"reactive-core_2"
+			],
+			[
+				"d",
+				"def	method"
+			],
+			[
+				"i",
+				"impc	import mutable/immutable"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/main/AndroidManifest.xml",
+			"settings":
+			{
+				"buffer_size": 976,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/main/scala/org/yarikx/reactiveandroid/demo/fragments/EditTextSignalFragment.scala",
+			"settings":
+			{
+				"buffer_size": 826,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/main/res/values/metrics.xml",
+			"settings":
+			{
+				"buffer_size": 221,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/main/res/layout/content_layout.xml",
+			"settings":
+			{
+				"buffer_size": 1007,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/main/res/layout/demo_activity.xml",
+			"settings":
+			{
+				"buffer_size": 449,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/main/res/layout-w500dp/demo_activity.xml",
+			"settings":
+			{
+				"buffer_size": 1615,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/main/res/layout/simple_stream_fragment.xml",
+			"settings":
+			{
+				"buffer_size": 1017,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "package org.yarikx.reactiveandroid.demo.fragments\n\nimport android.os.Bundle\nimport android.support.v4.app.Fragment\nimport android.view.{ LayoutInflater, ViewGroup }\nimport org.yarikx.reactiveandroid.demo.{ R, TR }\nimport org.yarikx.reactiveandroid.demo.TypedResource._\nimport org.yarikx.reactiveandroid.demo.utils.Utils._\nimport reactive.Observing\nimport reactive.EventSource\nimport android.view.View\n\nclass SimpleStreamRefactoredFragment extends DemoFragment with Observing {\n\n  override def onCreateView(inflater: LayoutInflater, vg: ViewGroup, bundle: Bundle) = {\n    val view = inflater.inflate(R.layout.simple_stream_fragment , vg, false)\n    \n    val button = new Button(this)\n    val editText = view.findView(TR.simple_field)\n    \n    //Create event stream of 'String's\n    val eventStream = new EventSource[String]\n\n    //Fire EditText state for every click to created stream\n    button.setOnClickListener(new View.OnClickListener{\n      def onClick(view: View)={\n        eventStream.fire(editText.getText().toString())\n      }\n    })\n    \n    //Handling every event\n    eventStream.foreach(s => log(s))\n\n    view\n  }\n\n}\n",
+			"file": "src/main/scala/org/yarikx/reactiveandroid/demo/fragments/SimpleStreamFragmentRefactored.scala",
+			"file_size": 1143,
+			"file_write_time": 1368195450000000,
+			"settings":
+			{
+				"buffer_size": 1129,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 52.0,
+		"selected_items":
+		[
+			[
+				"impo",
+				"Ensime: Add Import"
+			],
+			[
+				"imo",
+				"Ensime: Add Import"
+			],
+			[
+				"import",
+				"Ensime: Add Import"
+			],
+			[
+				"impor",
+				"Ensime: Add Import"
+			],
+			[
+				"ensime",
+				"Ensime: Client Log"
+			],
+			[
+				"ensime add",
+				"Ensime: Add Import"
+			],
+			[
+				"ensime ins",
+				"Ensime: Inspect Type at Point"
+			],
+			[
+				"",
+				"Package Control: List Packages"
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"packContr",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"pacl",
+				"Preferences: Package Control Settings – Default"
+			],
+			[
+				"ens sta",
+				"Ensime: Startup"
+			],
+			[
+				"ens re",
+				"Ensime: Restart"
+			],
+			[
+				"ens res",
+				"Ensime: Restart"
+			],
+			[
+				"ens star",
+				"Ensime: Startup"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"ens resa",
+				"Ensime: Restart"
+			],
+			[
+				"ensime ",
+				"Ensime: Log"
+			],
+			[
+				"ens add",
+				"Ensime: Add Import"
+			],
+			[
+				"ens impo",
+				"Ensime: Add Import"
+			],
+			[
+				"ensime im",
+				"Ensime: Add Import"
+			],
+			[
+				"ens imp",
+				"Ensime: Add Import"
+			],
+			[
+				"ensi star",
+				"Ensime: Startup"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/yarik/android/react/reactive-android/reactive-demo/.ensime",
+		"/home/yarik/android/react/reactive-android/reactive-demo/src/main/res/drawable-xxhdpi/ic_launcher.png",
+		"/home/yarik/android/react/android-plugin/src/main/scala/AndroidBase.scala",
+		"/home/yarik/android/react/android-plugin/src/main/scala/AndroidKeys.scala",
+		"/home/yarik/android/react/android-plugin/src/main/scala/AndroidPreload.scala",
+		"/home/yarik/android/react/android-plugin/src/main/scala/AndroidPath.scala",
+		"/home/yarik/android/react/android-plugin/build.sbt",
+		"/home/yarik/android/react/android-plugin/src/main/scala/TypedResources.scala",
+		"/home/yarik/android/react/android-plugin/src/main/scala/AndroidInstall.scala",
+		"/home/yarik/android/react/android-plugin/src/main/scala/AndroidDefault.scala",
+		"/home/yarik/android/react/reactive-android/reactive-demo/target/scala-2.10/src_managed/main/scala/org/yarikx/reactiveandroid/demo/TR.scala",
+		"/home/yarik/android/react/reactive-android/reactive-demo/src/main/res/layout/two_buttons_fragment.xml",
+		"/home/yarik/android/react/reactive-android/reactive-demo/src/main/res/layout/take_while_fragment.xml",
+		"/home/yarik/android/react/reactive-android/reactive-demo/src/main/res/values/strings.xml",
+		"/home/yarik/android/react/reactive-android/reactive-demo/src/main/scala/org/yarikx/reactiveandroid/demo/fragments/SimpleStreamFragment.scala",
+		"/home/yarik/android/react/reactive-android/reactive-demo/src/main/scala/org/yarikx/reactiveandroid/demo/fragments/TakeWhileFragment.scala",
+		"/home/yarik/android/react/reactive-android/reactive-demo/src/main/scala/org/yarikx/reactiveandroid/demo/fragments/DemoFragment.scala",
+		"/home/yarik/android/react/reactive-android/reactive-demo/src/main/scala/org/yarikx/reactiveandroid/demo/Scalapp.scala",
+		"/home/yarik/android/react/reactive-android/reactive-demo/src/main/res/values/metrics.xml",
+		"/home/yarik/android/react/reactive-android/reactive-demo/src/main/scala/org/yarikx/reactiveandroid/demo/fragments/ComposeSignalFragment.scala",
+		"/home/yarik/android/react/reactive-android/.ensime_session",
+		"/home/yarik/.config/sublime-text-2/Packages/Ensime/logs/server.log",
+		"/home/yarik/.config/sublime-text-2/Packages/Ensime/logs/client.log",
+		"/home/yarik/android/react/reactive-android/reactive-demo/src/main/scala/org/yarikx/reactiveandroid/demo/utils/LogActivity.scala",
+		"/home/yarik/android/react/reactive-android/reactive-android/.ensime",
+		"/home/yarik/Topology.scala",
+		"/tmp/subl/.ensime",
+		"/home/yarik/.config/sublime-text-2/Packages/User/Package Control.sublime-settings",
+		"/home/yarik/.config/sublime-text-2/Packages/Package Control/Package Control.sublime-settings",
+		"/home/yarik/android/react/reactive-android/reactive-android/src/main/AndroidManifest.xml",
+		"/home/yarik/android/react/reactive-android/reactive-android/src/main/scala/ReactiveDemo.scala",
+		"/home/yarik/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
+		"/home/yarik/android/react/reactive-android/reactive-android/src/main/scala/org/yarikx/reactiveandroid/ReactiveClicker.scala",
+		"/home/yarik/android/react/reactive-android/reactive-android/src/main/scala/org/yarikx/reactiveandroid/Helpers.scala",
+		"/home/yarik/android/react/reactive-android/reactive-android/src/main/scala/org/yarikx/reactiveandroid/ReactiveSeekbar.scala",
+		"/home/yarik/android/react/reactive-android/reactive-android/src/main/scala/org/yarikx/reactiveandroid/ReactiveTextView.scala",
+		"/home/yarik/android/react/reactive-android/reactive-android/src/main/res/layout/main.xml",
+		"/home/yarik/android/react/reactive-android/reactive-core/src/main/scala/reactive/Signal.scala",
+		"/home/yarik/android/react/reactive-android/reactive-core/src/main/scala/reactive/EventStream.scala",
+		"/home/yarik/android/react/reactive-android/reactive-core/src/main/scala/reactive/Observing.scala",
+		"/home/yarik/android/react/reactive-android/reactive-android/target/scala-2.9.2/src_managed/main/scala/com/yarikx/reactiveandroid/TR.scala",
+		"/home/yarik/android/react/reactive-android/reactive-android/src/main/scala/org/yarikx/reactiveandroid/ReactiveButton.scala",
+		"/home/yarik/android/react/reactive/reactive-android/.ensime",
+		"/home/yarik/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/yarik/.config/sublime-text-2/Packages/User/Distraction Free.sublime-settings"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"flatMap",
+			"\"-keep public class * extends android.app.backup.BackupAgent\" ::",
+			"\"-keep public class * extends android.app.Activity\" ::",
+			"generated",
+			"Source",
+			"IO",
+			"Source",
+			"Prog",
+			"resourcesApk",
+			"classesDexName",
+			"aaptName",
+			"resourcesApkName",
+			"dx",
+			"manifestPa",
+			"andor",
+			"\"\n",
+			"wrap_content",
+			"reactiveandroid",
+			"Ge",
+			"cantStop",
+			"    \n",
+			"scroll"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 7,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/main/AndroidManifest.xml",
+					"settings":
+					{
+						"buffer_size": 976,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								944,
+								944
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/main/scala/org/yarikx/reactiveandroid/demo/fragments/EditTextSignalFragment.scala",
+					"settings":
+					{
+						"buffer_size": 826,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Scala/Scala.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/main/res/values/metrics.xml",
+					"settings":
+					{
+						"buffer_size": 221,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								130,
+								130
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/main/res/layout/content_layout.xml",
+					"settings":
+					{
+						"buffer_size": 1007,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								681,
+								681
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/main/res/layout/demo_activity.xml",
+					"settings":
+					{
+						"buffer_size": 449,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								228,
+								228
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/main/res/layout-w500dp/demo_activity.xml",
+					"settings":
+					{
+						"buffer_size": 1615,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								838,
+								838
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/main/res/layout/simple_stream_fragment.xml",
+					"settings":
+					{
+						"buffer_size": 1017,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								700,
+								700
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/main/scala/org/yarikx/reactiveandroid/demo/fragments/SimpleStreamFragmentRefactored.scala",
+					"settings":
+					{
+						"buffer_size": 1129,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1112,
+								1112
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 138.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 314.0,
+	"status_bar_visible": true
+}

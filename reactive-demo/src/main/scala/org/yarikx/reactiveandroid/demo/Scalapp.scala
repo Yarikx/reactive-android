@@ -9,6 +9,7 @@ import org.yarikx.reactiveandroid.demo.fragments.SimpleStreamFragment
 import org.yarikx.reactiveandroid.demo.fragments.ComposeSignalFragment
 import org.yarikx.reactiveandroid.demo.fragments.FilteredFragment
 import org.yarikx.reactiveandroid.demo.fragments.MappedFragment
+import org.yarikx.reactiveandroid.demo.fragments.DoubleClickFragment
 
 class Scalapp extends Application {
 
@@ -25,7 +26,8 @@ class Scalapp extends Application {
     "Progress" -> new ProgressFragment,
     "Progress2" -> new Progress2Fragment,
     "Signal compose" -> new ComposeSignalFragment,
-    "Broadcast" -> new BroadcastFragment)
+    "Broadcast" -> new BroadcastFragment,
+    "Double click" -> new DoubleClickFragment)
 
 }
 
