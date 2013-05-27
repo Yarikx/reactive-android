@@ -239,9 +239,11 @@ class EventSource[T] extends EventStream[T] with Logger {
     private val parent = EventSource.this
     protected def handler: (T, S) => S
     private val h = handler
-    protected val listener: T => Unit = NamedFunction(debugName+".listener")(v => synchronized {
+    protected def createListener: T => Unit = NamedFunction(debugName+".listener")(v => synchronized {
       state = h(v, state)
     })
+    protected val listener = createListener
+
     parent addListener listener
   }
 
@@ -398,6 +400,8 @@ class EventSource[T] extends EventStream[T] with Logger {
       override def debugName = "%s.map(%s)" format (EventSource.this.debugName, f)
       val f0 = f
       def handler = (event, _) => this fire f(event)
+      private val h = handler
+      override protected def createListener: T => Unit = NamedFunction(debugName+".listener"){v => this fire f(v)}
     }
   }
 
