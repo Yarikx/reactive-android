@@ -250,7 +250,7 @@ class EventSource[T] extends EventStream[T] with Logger {
     val thunk: U => Unit = fire _
     state foreach { _ addListener thunk }
     def handler = (parentEvent, lastES) => {
-      lastES foreach { _ removeListener thunk }
+      //lastES foreach { _ removeListener thunk }
       val newES = Some(f(parentEvent))
       newES foreach { _ addListener thunk }
       newES
