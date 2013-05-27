@@ -27,6 +27,7 @@ class Scalapp extends Application {
     "Progress2" -> new Progress2Fragment,
     "Signal compose" -> new ComposeSignalFragment,
     "Broadcast" -> new BroadcastFragment,
+    "Async Worker" -> new AsyncFragment,
     "Double click" -> new DoubleClickFragment)
 
 }

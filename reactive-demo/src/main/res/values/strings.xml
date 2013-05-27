@@ -5,4 +5,6 @@
     <string name="stop">Stop</string>
     <string name="link_second_bar_with_first">link second bar with first</string>
     <string name="click">Click!</string>
+    <string name="good">Good</string>
+    <string name="bad">Bad</string>
 </resources>
