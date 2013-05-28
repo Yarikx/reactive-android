@@ -36,11 +36,10 @@ class LineDrawFragment extends DemoFragment with Observing {
     val paths = for {
       downEvent <- downs;
       startPath = createPath(downEvent.getX, downEvent.getY);
-      pathSignal = moves.until(ups).foldLeft(startPath)((p, evt) => { p.lineTo(evt.getX, evt.getY); p }).hold(startPath);
-      upEvent <- ups.once;
-      currentPath = pathSignal.now;
-      _ = currentPath.moveTo(upEvent.getX, upEvent.getY)
-    } yield currentPath
+      pathStream = moves.until(ups)
+        .foldLeft(startPath)((p, evt) => { p.lineTo(evt.getX, evt.getY); p });
+      pathToDraw <- pathStream
+    } yield pathToDraw
 
     //just render 
     paths.foreach { x =>
