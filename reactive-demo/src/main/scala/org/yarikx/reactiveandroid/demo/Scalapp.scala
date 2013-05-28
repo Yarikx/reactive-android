@@ -1,15 +1,8 @@
 package org.yarikx.reactiveandroid.demo
 
 import android.app.Application
-import org.yarikx.reactiveandroid.demo.fragments.Progress2Fragment
-import org.yarikx.reactiveandroid.demo.fragments.BroadcastFragment
 import org.yarikx.reactiveandroid.demo.fragments._
 import scala.collection.immutable.ListMap
-import org.yarikx.reactiveandroid.demo.fragments.SimpleStreamFragment
-import org.yarikx.reactiveandroid.demo.fragments.ComposeSignalFragment
-import org.yarikx.reactiveandroid.demo.fragments.FilteredFragment
-import org.yarikx.reactiveandroid.demo.fragments.MappedFragment
-import org.yarikx.reactiveandroid.demo.fragments.DoubleClickFragment
 
 class Scalapp extends Application {
 
@@ -29,6 +22,7 @@ class Scalapp extends Application {
     "Broadcast" -> new BroadcastFragment,
     "Async Worker" -> new AsyncFragment,
     "Search" -> new SearchFragment,
+    "Line draw" -> new LineDrawFragment,
     "Double click" -> new DoubleClickFragment)
 
 }

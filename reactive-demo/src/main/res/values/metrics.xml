@@ -3,5 +3,6 @@
     <dimen name="main_margin">16dp</dimen>
     <item name="debug_window_weight" type="integer">4</item>
     <dimen name="demos_list_width">250dp</dimen>
+    <color name="line_draw_color">#FF0000</color>
     
 </resources>
