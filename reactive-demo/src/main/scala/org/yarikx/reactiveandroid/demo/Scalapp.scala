@@ -23,7 +23,7 @@ class Scalapp extends Application {
     "Async Worker" -> new AsyncFragment,
     "Search" -> new SearchFragment,
     "Line draw" -> new LineDrawFragment,
+    "Multitouch draw" -> new MultitouchDrawFragment,
     "Double click" -> new DoubleClickFragment)
-
 }
 
